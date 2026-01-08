@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的相册</title>
+    <link rel="stylesheet icon" href="蜜罐_个人简历.png">
+    <style>
+        /* 导航栏样式 */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #f8d0e0;
+            text-align: center;
+        }
+        .nav .logo {
+            color: #f687b3;
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 50px;
+            display: inline-block;
+            text-align: left;
+            margin-left: 50px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #666;
+            margin: 0 15px;
+            font-size: 16px; 
+            margin-right: 50px;
+        }
+        .nav a.active {
+            color: #f687b3;
+            font-weight: bold;
+        }
+
+        /* 头部导航 */
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #f8d2e1;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #f687b3;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover, .nav-list a.active {
+            color: #f687b3;
+            font-weight: 500;
+        }
+
+        /* 相册标题区 */
+        .album-title {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #fff5f8;
+        }
+
+        .album-title h2 {
+            color: #f687b3;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .album-title p {
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* 分类标签 */
+        .tag-container {
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .tag {
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #f8d2e1;
+        }
+
+        .tag.active {
+            background-color: #f687b3;
+            color: #fff;
+            border-color: #f687b3;
+        }
+
+        .tag:hover:not(.active) {
+            background-color: #fff5f8;
+        }
+
+        /* 相册图片网格 */
+        .album-grid {
+            width: 90%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding-bottom: 40px;
+        }
+
+        .photo-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(246, 135, 179, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #fff5f8;
+        }
+
+        .photo-desc {
+            padding: 12px;
+            background-color: #fff;
+        }
+
+        .photo-desc h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .photo-desc p {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* 页脚 */
+        .footer {
+            background-color: #f687b3;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 1024px) {
+            .album-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .album-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .nav-list {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .album-grid {
+                grid-template-columns: 1fr;
+            }
+            .tag-container {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="logo">
+            <span class="logo">小宇</span>
+        </div>
+        <div class="content">
+            <a href="index.html">首页</a>
+            <a href="like.html">我的爱好</a>
+            <a href="album.html" class="active">我的相册</a>
+            <a href="contact.html">联系我</a>
+        </div>
+    </div>
+
+    <!-- 相册标题 -->
+    <section class="album-title">
+        <h2>我的相册</h2>
+        <p>用镜头记录生活的美好时光</p>
+    </section>
+
+    <!-- 分类标签 -->
+    <section class="tag-container">
+        <div class="tag active">全部</div>
+        <div class="tag">日常生活</div>
+        <div class="tag">旅行足迹</div>
+        <div class="tag">美食记录</div>
+        <div class="tag">朋友聚会</div>
+    </section>
+
+    <!-- 相册图片网格 -->
+    <section class="album-grid">
+        <!-- 图片卡片1 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat1/400/300" alt="校园时光" class="photo-img">
+            <div class="photo-desc">
+                <h4>校园时光</h4>
+                <p>美好的校园生活</p>
+            </div>
+        </div>
+        <!-- 图片卡片2 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat2/400/300" alt="第一次做的小蛋糕" class="photo-img">
+            <div class="photo-desc">
+                <h4>第一次做的小蛋糕</h4>
+                <p>亲手制作</p>
+            </div>
+        </div>
+        <!-- 图片卡片3 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat3/400/300" alt="春游踏青" class="photo-img">
+            <div class="photo-desc">
+                <h4>春游踏青</h4>
+                <p>春天的美好风景</p>
+            </div>
+        </div>
+        <!-- 图片卡片4 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat4/400/300" alt="学习时光" class="photo-img">
+            <div class="photo-desc">
+                <h4>学习时光</h4>
+                <p>图书馆的安静午后</p>
+            </div>
+        </div>
+        <!-- 图片卡片5 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat5/400/300" alt="美食分享" class="photo-img">
+            <div class="photo-desc">
+                <h4>美食分享</h4>
+                <p>和朋友一起品美食</p>
+            </div>
+        </div>
+        <!-- 图片卡片6 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat6/400/300" alt="友谊时光" class="photo-img">
+            <div class="photo-desc">
+                <h4>友谊时光</h4>
+                <p>和室友的快乐时光</p>
+            </div>
+        </div>
+        <!-- 图片卡片7 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat7/400/300" alt="城市探索" class="photo-img">
+            <div class="photo-desc">
+                <h4>城市探索</h4>
+                <p>发现城市的美丽角落</p>
+            </div>
+        </div>
+        <!-- 图片卡片8 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat8/400/300" alt="创作时光" class="photo-img">
+            <div class="photo-desc">
+                <h4>创作时光</h4>
+                <p>享受绘画的乐趣</p>
+            </div>
+        </div>
+        <!-- 图片卡片9 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat9/400/300" alt="家常美食" class="photo-img">
+            <div class="photo-desc">
+                <h4>家常美食</h4>
+                <p>妈妈教我做的菜</p>
+            </div>
+        </div>
+        <!-- 图片卡片10 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat10/400/300" alt="社团活动" class="photo-img">
+            <div class="photo-desc">
+                <h4>社团活动</h4>
+                <p>参加社团的精彩活动</p>
+            </div>
+        </div>
+        <!-- 图片卡片11 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat11/400/300" alt="读书时光" class="photo-img">
+            <div class="photo-desc">
+                <h4>读书时光</h4>
+                <p>沉浸在书的世界</p>
+            </div>
+        </div>
+        <!-- 图片卡片12 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat12/400/300" alt="自然风光" class="photo-img">
+            <div class="photo-desc">
+                <h4>自然风光</h4>
+                <p>山间的清新空气</p>
+            </div>
+        </div>
+        <!-- 图片卡片13 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat13/400/300" alt="海边日落" class="photo-img">
+            <div class="photo-desc">
+                <h4>海边日落</h4>
+                <p>最美的黄昏时光</p>
+            </div>
+        </div>
+        <!-- 图片卡片14 -->
+        <div class="photo-card">
+            <img src="https://picsum.photos/seed/cat14/400/300" alt="毕业合影" class="photo-img">
+            <div class="photo-desc">
+                <h4>毕业合影</h4>
+                <p>珍贵的友谊回忆</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        ©2025 小宇的个人网站 感谢您的访问
+    </footer>
+
+    <script>
+        // 分类标签切换交互
+        const tags = document.querySelectorAll('.tag');
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                tags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                // 此处可扩展图片筛选逻辑
+            });
+        });
+    </script>
+</body>
+</html>
